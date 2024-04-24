@@ -3,7 +3,7 @@
 tup_a=(4,5,6)
 print(tup_a)
 print(type(tup_a))
-tup=tuple('string')
+tup=tuple('string') 
 print(tup)
 print(tup_a)
 #tup_a[0]=20 cannot change value of tuple
