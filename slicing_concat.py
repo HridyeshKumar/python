@@ -9,6 +9,7 @@ player_list = [['M.S.Dhoni', 36, 75, 5428000],
 			['J.Root', 33, 72, 7028000],
 			['K.Peterson', 42, 85, 2528000]]
 
+
 # creating a pandas dataframe
 df = pd.DataFrame(player_list, columns=['Name', 'Age', 'Weight', 'Salary'])
 df # data frame before slicing
