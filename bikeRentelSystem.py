@@ -12,6 +12,7 @@ class bikeShop:
 						self.stock=self.stock-q
 						print("Total Prices",q*100)
 						print("Total Bikes",self.stock)
+					
 while True:
 	obj=bikeShop(100)
 	uc=int(input('''
