@@ -1,0 +1,22 @@
+s={10,20,30,40}
+print(s)
+for a in s:
+	print(a)
+l=[10,20,30,40]
+s=set(l)
+print(s)
+s={10,20,30,40,50}
+s.remove(20)
+print(s)
+s.discard(50)
+print(s)
+print(s.pop())
+print(s)
+s.clear()
+print(s)
+l=[10,80,90]
+s={10,20,30,40,50}
+s.add(60)
+print(s)
+s.update(l)
+print(s)
