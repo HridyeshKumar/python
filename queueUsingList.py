@@ -1,4 +1,4 @@
-l=[]
+il=[]
 while True:
 	c=int(input('''
 			1 Enqueue
@@ -27,7 +27,7 @@ while True:
 		if len(l)==0:
 			print("Empty Queue")
 		else:
-			print("Front Queue Value=>",l[-1])
+			print("Rear Queue Value=>",l[-1])
 	elif c==5:
 		print("Display Queue=>",l)
 	elif c==6:
