@@ -13,6 +13,6 @@ sum(10)
 sum(40,20)
 #function with return type
 def square(x):
-	return x*x,x*2
+	return x*x,x**2
 s=square(5)
 print(s)
