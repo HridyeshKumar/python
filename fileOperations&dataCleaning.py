@@ -71,4 +71,11 @@ data.replace(-999,np.nan)
 data.replace([-999,1000],np.nan)
 data.replace([-999,1000],[np.nan,0])
 data.replace({-999:np.nan,-1000:0})
-data=pd.DataFrame(np.arange(
+data=pd.DataFrame(np.arange(12).reshape((3,4)),index=["Ohio","Colorado","New York"],columnns=["one","two","three","four"])
+print(data)
+def transform(x):
+   return x[:4].upper()
+data.index=data.index.map(transform)
+print(data)
+data.rename(index=str.title,columns=str.upper)
+data.rename(index={"OHIO":"INDIANA"},columns={"three":"peekaboo"})
