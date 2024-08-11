@@ -10,3 +10,6 @@ tips.head()
 '''A Histogram is a kind of bar plot that gives a discretized display of continuous data.'''
 tips["tip_pct"].plot.hist(bins=50)
 tips["tip_pct"].plot.density()
+
+#Scatter or Point Plots
+import numpy as np
