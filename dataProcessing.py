@@ -13,3 +13,9 @@ tips["tip_pct"].plot.density()
 
 #Scatter or Point Plots
 import numpy as np
+macro=pd.read_csv("examples/macrodata.csv")
+data=macro[["cpi","mi","tbilrate","unemp"]]
+trans_data=np.log(data).diff().dropna()
+trans_data.tail()
+ax=sns.regplot(x="m1",y="unemp",data=trans_data)
+#ax.title("Changes in log
