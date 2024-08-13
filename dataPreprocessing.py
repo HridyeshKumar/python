@@ -137,4 +137,33 @@ sns.distplot(diamond_data["price"])
 price_range=diamond_data["price"].max()-diamond_data["price"].min()
 print(price_range)
 price_range/10
+lower_interval=int(np.floor(diamond_data["price"].min()))
+upper_interval=int(np.ceil(diamond_data["price"].max()))
+interval_length=int(np.round(price_range/10))
+print(lower_interval)
+print(upper_interval)
+print(interval_length)
+total_bins=[i for i in range(lower_interval,upper_interval+interval_length,interval_length)]
+print(total_bins)
+bin_labels=['Bin_no_'+str(i) for i in range(l,len(total_bins))]
+print(bin_labels)
+diamond_data['price_bins']=pd.cut(x=diamond_data['price'],bins=total_bins,labels=bin_labels,include_lowest=True)
+diamond_data.head()
+diamond_data.groupby('price_bins')['price'].count().plot.bar()
+plt.xticks(rotation=45)
+'''The output shows that the price of most of the diamonds lies in the first bin or the first interval.'''
 
+#Handling Outliers
+'''Outliers  are the values that are too far from the rest of the observation.'''
+
+#Outlier Trimming
+'''As the name suggests it refers to simply removing the outliers beyond a certain threshold value.
+One of the main advantage of outlier trimming is that it is extremely quick and doesn't distort the data.'''
+
+titanic_data=sns.load_dataset("titanic")
+titanic_data.head()
+sns.boxplot(y="age",data=titanic_data)
+
+'''One of the most common ways to remove the outliers is to find the Inter Quartile Range(IQR), multiply it  by 1.5 and then subtract it from the first quartile value(0.25 quantile).
+To find the upper limit, add the product of IQR and 1.5 to the 3rd quartile value(0.75 quantile)'''
+ 
