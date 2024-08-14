@@ -187,3 +187,7 @@ Therefore, features that are very similar should be removed from the dataset.The
 One of the ways is to find the variance for the particular feature and remove features having variance less than a certain threshold.
 A feature with low variance has a higher degree of similarity among its data points and vice-versa.'''
 
+import pandas as pd 
+import numpy as np 
+wine_data=pd.read_csv("winequality-read.csv")
+wine_data.head()
