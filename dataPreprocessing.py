@@ -191,3 +191,39 @@ import pandas as pd
 import numpy as np 
 wine_data=pd.read_csv("winequality-read.csv")
 wine_data.head()
+
+#Dividing data into features and labels
+features=wine_data.drop(["quality"],axis=1)
+labels=wine_data.filter(["quality"],axis=1)
+
+#Filtering features based on threshold
+from sklearn.feature_selection import VarianceThreshold
+var_sel=VarianceThreshold(threshold=(0.1))
+var_sel.fit(features)
+attributes_to_retain=features.columns[var_sel.get_support()]
+print(attributes_to_retain)
+attributes_to_filter=[attr for attr in features.columns if attr not in features.columns[var_sel.get_support()]]
+print(attributes_to_filter)
+filtered_dataset=features.drop(attributes_to_filter,axis=1)
+filtered_dataset.head()
+
+#Feature Selection based on correlation
+'''In Feature selection based on correlation, the features are selected using the following steps
+1. Mutual correlation between all the features is calculated.
+2. The correlation threshold is set.
+3. Features having mutual correlation greater than the correlation threshold with any other feature are removed from the dataset.'''
+
+correlation_matrix=features.corr()
+print(correlation_matrix)
+import seaborn as sns
+sns.heatmap(correlation_matrix)
+correlated_features_matrix=set()
+for i in range(len(correlation_matrix.columns)):
+   for j in range(i):
+      if abs(correlation_matrix.iloc[i,j])>0.6:
+        corr_col=correlation_matrix.columns[i]
+         correlated_features_matrix.add(corr_col)
+len(correlated_features_matrix)
+print(correlated_features_matrix)
+filtered_dataset=features.drop(correlated_features_matrix,axis=1)
+filtered_dataset.head()
