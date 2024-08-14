@@ -166,4 +166,24 @@ sns.boxplot(y="age",data=titanic_data)
 
 '''One of the most common ways to remove the outliers is to find the Inter Quartile Range(IQR), multiply it  by 1.5 and then subtract it from the first quartile value(0.25 quantile).
 To find the upper limit, add the product of IQR and 1.5 to the 3rd quartile value(0.75 quantile)'''
- 
+
+IQR=titanic_data["age"].quantile(0.75)-titanic_data["age"].quantile(0.25)
+lower_age_limit=titanic_data["age"].quantile(0.25)-(IQR*1.5) upper_age_limit=titanic_data["age"].quantile(0.75)+(IQR*1.5)
+print(lower_age_limit)
+print(upper_age_limit)
+age_outliers=np.where(titanic_data["age"]>upper_age_limit,True,np.where(titanic_data["age"]<lower_age_limit,True,False))
+titanic_without_age_outliers=titanic_data.loc[~(age_outliers),]
+titanic_data.shape,titanic_without_age_outliers.shape
+
+#Feature Selection
+'''Machine Learning algorithms learn from datasets. A dataset consists of features.
+A feature refers to a single characteristics or dimension of data.Feature are also known as attributes.
+For instance, a dataset of cars has features like car models, car color, seating capacity etc.
+Selecting the right features is not only improves the performance of your machine learning model but it also speeds up the training time of your algorithm.'''
+
+#Feature Selection based on Variance
+'''Features having constant or very similar values do not really play any significant role in machine learning tasks such as classification and regression.
+Therefore, features that are very similar should be removed from the dataset.There are various ways to remove very similar features from the dataset.
+One of the ways is to find the variance for the particular feature and remove features having variance less than a certain threshold.
+A feature with low variance has a higher degree of similarity among its data points and vice-versa.'''
+
