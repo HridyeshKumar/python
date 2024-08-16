@@ -94,4 +94,28 @@ print('Root Mean Squared Error:',metrics.mean_squared_error(y_test,y_pred))
 Ensemble modelling technique.'''
 #Advantages
 '''You have lots of missing data or imbalance dataset (0(200) and 1(1000)).
-'''
+With a large number of trees or models, you can avoid overfitting. Overfitting occurs when ML models performs better on the training set but worse on the test set.'''
+
+from sklearn.ensemble import RandomForestRegressor
+rf_reg=RandomForestRegressor(random_state=42,n_estimators=500)
+regressor=rf_reg.fit(X_train,y_train)
+y_pred=regressor.predict(X_test)
+from sklearn import metrics
+print('Mean Absolute Error:',metrics.mean_absolute_error(y_test,y_pred))
+print('Mean Squared Error:',metrics.mean_squared_error(y_test,y_pred))
+print('Root Mean Squared Error:',np.sqrt(metrics.mean_squared_error(y_test,y_pred)))
+
+#Classification Problems in Machine Learning 
+'''Classification problems are the type of problems where you have to predict a deiscrete value i.e., whether the student will pass the exam or not.'''
+
+import pandas as pd 
+import numpy as np
+#importing the dataset
+churn_df=pd.read_csv("Churn_Modelling.csv")
+churn_df.head()
+
+'''The exited column contains information regarding whether or not the customer exited the bank after six months.'''
+
+#Removing unnecessary columns
+churn_df=churn_df.drop(['RowNumber','CustomerId','Surname'],axis=1)
+churn_df.head()
