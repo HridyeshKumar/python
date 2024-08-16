@@ -43,3 +43,24 @@ Whether a customer will leave the bank after a certain period or not.'''
 #Logistic Regression 
 '''Logistic Regression is a linear model, which makes classification by passing the output of linear regression through a sigmoid function.
 Importing logistic regression classifier from sklearn'''
+ 
+from sklearn.linear_model import LogisticRegression
+log_clf=LogisticRegression()
+classifier=log_clf.fit(X_train,y_train)
+y_pred=classifier.predict(X_test)
+
+'''There are various metrics to evaluate a classification method.
+Some of the most commonly used classification metrics are F1 score, recall, precision, accuracy and confusion matrix.
+True Negatives(TN/tn):True Negatives are those output labels that are actually false and the model also predicted them as false.
+True Positives(TP/tp):True Positives are those output labels that are actually true and the model also predicted them as true.
+False Negatives(FN/fn):False Negatives are those output labels that are actually true but the model predicted them as false.
+False Positives(FP/fp):False Positives are those output labels that are actually false but the model also predicted them as true.'''
+
+#Precision
+'''It is obtained by dividing true positives by the sum of true positive and false positive.
+Precision=tp/(tp+fp)'''
+#Recall
+'''It is obtained by dividing true positives by the sum of true positives and false negatives.
+Recall=tp/(tp+fn)'''
+
+#Evaluating the 
