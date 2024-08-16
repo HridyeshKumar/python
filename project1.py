@@ -105,17 +105,3 @@ print('Mean Absolute Error:',metrics.mean_absolute_error(y_test,y_pred))
 print('Mean Squared Error:',metrics.mean_squared_error(y_test,y_pred))
 print('Root Mean Squared Error:',np.sqrt(metrics.mean_squared_error(y_test,y_pred)))
 
-#Classification Problems in Machine Learning 
-'''Classification problems are the type of problems where you have to predict a deiscrete value i.e., whether the student will pass the exam or not.'''
-
-import pandas as pd 
-import numpy as np
-#importing the dataset
-churn_df=pd.read_csv("Churn_Modelling.csv")
-churn_df.head()
-
-'''The exited column contains information regarding whether or not the customer exited the bank after six months.'''
-
-#Removing unnecessary columns
-churn_df=churn_df.drop(['RowNumber','CustomerId','Surname'],axis=1)
-churn_df.head()
