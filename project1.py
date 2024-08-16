@@ -61,3 +61,37 @@ sc=StandardScaler()
 x_train=sc.fit_transform(x_train)
 x_test=sc.transform(x_test)
 '''We have converted data into a format that can be sured to train ML algorithms for regression.'''
+
+#Linear Regression 
+'''Linear Regression is a linear model that assumes a linear relationship between inputs and outputs and minimizes the cost of error between the predicted and actual output using functions like mean absolute error.'''
+
+#Advantages
+'''Linear Regression is a simple to implement and easily interpretable algorithm.
+It takes less time to train, even for huge datasets.
+Linear Regression coefficients are easy to interpret.
+Importing Linear Regression model from sklearn.'''
+
+from sklearn.linear_model import LinearRegression 
+lin_reg=LinearRegression()
+regressor=lin_reg.fit(X_train,y_train)
+y_pred=regressor.predict(X_test)
+
+'''Once you have trained a model and have made predictions on the test set, the next step is to know how well your model has performed for making predictions on the unknown test set.
+There are various metrics to check that.
+Mean Absolute Error (MAE) is calculated by taking the average of absolute error obtained by subtracting real values from predicted values.
+Mean Squared Error (MSE) is similar to MAE. However, the error for each record is squared in case of MSE.
+Root Mean Squared Error (RMSE) is the under root of mean squared error.'''
+
+from sklearn import metrics
+print('Mean Absolute Error:',metrics.mean_absolute_error(y_test,y_pred))
+print('Mean Squared Error:',metrics.mean_squared_error(y_test,y_pred))
+print('Root Mean Squared Error:',metrics.mean_squared_error(y_test,y_pred))
+
+'''By looking at the MAE, it can be concluded that, on average there is an error of 0.70 for predictions, which means that on average there is an error of 0.70 for predictions, which means that on average, the predicted tip values are 0.70$ more or less than the actual tip values.'''
+
+#Random Forest Regression
+'''Random Forest Regression is tree-based algorithm.
+Ensemble modelling technique.'''
+#Advantages
+'''You have lots of missing data or imbalance dataset (0(200) and 1(1000)).
+'''
