@@ -29,3 +29,5 @@ When there are more nodes and layers it usually results in better accuracy. As a
 '''They form the basis for Deep Learning Algorithms. Weights and Biases are trainable parameters in a neural network model.
 Each input for each node will have an associated weight with it.'''
 #Activation Functions
+'''An activation function plays an important role in creating the output of the node in the neural network.
+'''
