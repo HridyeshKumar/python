@@ -30,4 +30,7 @@ When there are more nodes and layers it usually results in better accuracy. As a
 Each input for each node will have an associated weight with it.'''
 #Activation Functions
 '''An activation function plays an important role in creating the output of the node in the neural network.
-'''
+An activation function takes the matrix output of the node and determines if and how the node will propagate information to the next layer.
+The main objective of activation function is that it converts the output to a non-linear value. They serve as a critical step in helping a neural network learn specific patterns in the data.
+TanH:- A TanH function normalizes the output in the range of (-1 to +1)
+ReLu:- Rectified Linear Unit- A ReLu produces a zero if the output is negative. Else, it will produce the same input verbatim.'''
