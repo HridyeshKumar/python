@@ -122,4 +122,34 @@ sns.regplot(x="Age",y="Spending Score (1-100)",data=dataset)
 '''The output confirms an inverse linear relationship between age and spending score.
 Young people have higher spending compared to older people.'''
 dataset=dataset.filter(["Annual Income(k$)","Spending Score (1-100)"],axis=1)
-datset.head()
+dataset.head()
+km_model=KMeans(n_clusters=4)
+km_model.fit(dataset)
+print(km_model.cluster_centers_)
+print(km_model.labels_)
+plt.scatter(dataset.values[:,0],dataset.values[:,1],c=km_model.labels_,cmap='rainbow')
+plt.scatter(km_model.cluster_centers_[:,0],km_model.cluster_centers_[:,1],s=100,c='black')
+#Elbow method to get the optimal number of cluaters
+loss=[]
+for i in range(1,11):
+   km=KMeans(n_clusters=i).fit(dataset)
+   loss.append(km.inertia_)
+plt.plot(range(1,11),loss)
+plt.title('Finding optimal number of vlusters via elbow method')
+plt.xlabel('Number of clusters')
+plt.ylabel('loss')
+plt.show() 
+km_model=KMeans(n_clusters=5)
+km_model.fit(dataset)
+print(km_model.cluster_centers_)
+print(km_model.labels_)
+plt.scatter(dataset.values[:,0],dataset.values[:,1],c=km_model.labels_,cmap='rainbow')
+plt.scatter(km_model.cluster_centers_[:,0],km_model.cluster_centers_[:,1],s=100,c='black')
+#Filtering all records with cluster id 1
+cluster_map=pd.DataFrame()
+cluster_map['data_indx']=dataset.index.values
+cluster_map['cluster']=km_model.labels_
+print(cluster_map)
+cluster_map=cluster_map[cluster_map.clusters==1]
+cluster_map.head()
+'''These are the customers who have high incomes and high spending and these customers should be targeted during marketing campaigns.'''
