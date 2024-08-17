@@ -63,4 +63,63 @@ Precision=tp/(tp+fp)'''
 '''It is obtained by dividing true positives by the sum of true positives and false negatives.
 Recall=tp/(tp+fn)'''
 
-#Evaluating the 
+#Evaluating the algorithm on the test set
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+print(confusion_matrix(y_test,y_pred))
+print(classification_report(y_test,y_pred))
+print(accuracy_score(y_test,y_pred))
+
+#Random Forest Classifier
+from sklearn.ensemble import RandomForestClassifier
+rf_clf=RandomForestClassifier(random_state=42,n_estimators=500)
+classifiers=rf_clf.fit(X_train,y_train)
+y_pred=classifier.predict(X_test)
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+print(confusion_matrix(y_test,y_pred))
+print(classification_report(y_test,y_pred))
+print(accuracy_score(y_test,y_pred))
+
+#Clustering
+'''Clustering algorithms are unsupervised algorithms where the training data is not labeled.
+Rather, the algorithms cluster or group the datasets based on common characteristics.'''
+
+#K-Means Clustering
+'''K-Means Clustering is one of the most commonly used algorithms for clustering, K refers to the number of clusters that you want your data to be grouped into.
+In K-Means clustering, the number of clusters has to be defined before K clustering can be applied to the data points.'''
+
+#Steps for K-Means Clustering
+'''1.Randomly assign centroid values for each cluster.
+2.Calculate the euclidean distance between each data point and centroid values of all the clusters.
+3.Assign the data point to the cluster of the centroid with the shortest distance.
+4.Calculate and update centroid values based on the mean values of the coordinates of all the data points of the corresponding cluster.
+5.Repeat steps 2-4 until new centroid values for all the clusters are different from the previous centroid values.'''
+
+import numpy as np
+import pandas as pd 
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+#Customer Segmentation using K-Means Clustering
+'''In this project, you will see how to segment customers based on their incomes and past spending habits.
+You will then identify customers who have high incomes and higher spending.'''
+
+dataset=pd.read_csv("Mall_Customers.csv")
+dataset.head()
+'''The output shows that the dataset contains 200 records and 5 cloumns.
+Plotting the histogram for the annual income column.'''
+import warnings
+warnings.filterwarnings("ignore")
+sns.distplot(dataset["Annual Income (k$)"],kde=False,bins=50)
+'''The output shows that most of the customers have incomes between 60 and 90K per year.
+Plotting the histogram for the spending score column.'''
+sns.distplot(dataset["Spending Score (1-100)"],kde=False,bins=50,color="red")
+'''The output shows that most of the customers have a spending score between 40 and 60.
+Plotting regression plot for annual income against spending score.'''
+sns.regplot(x="Annual Income (k$)",y="Spending Score (1-100)",data=dataset)
+'''There is no linear relationship between annual income and spending.
+Plotting regression plot for age and spending score'''
+sns.regplot(x="Age",y="Spending Score (1-100)",data=dataset)
+'''The output confirms an inverse linear relationship between age and spending score.
+Young people have higher spending compared to older people.'''
+dataset=dataset.filter(["Annual Income(k$)","Spending Score (1-100)"],axis=1)
+datset.head()
