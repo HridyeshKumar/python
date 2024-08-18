@@ -33,4 +33,14 @@ Each input for each node will have an associated weight with it.'''
 An activation function takes the matrix output of the node and determines if and how the node will propagate information to the next layer.
 The main objective of activation function is that it converts the output to a non-linear value. They serve as a critical step in helping a neural network learn specific patterns in the data.
 TanH:- A TanH function normalizes the output in the range of (-1 to +1)
-ReLu:- Rectified Linear Unit- A ReLu produces a zero if the output is negative. Else, it will produce the same input verbatim.'''
+ReLu:- Rectified Linear Unit- A ReLu produces a zero if the output is negative. Else, it will produce the same input verbatim.
+Softmax Function:- This is used in the case of classification problems. It produces a vector of probabilities for each of the possible classes in the outcomes. The class with the highest probability will be considered as the final class.
+These all activation functions are added as hyperparameters in the model.'''
+
+#Output Layer
+'''The output layer is the final layer in the neural network where desired predictions are obtained. '''
+#Training a Neural Network Model
+'''Set up and initialisation:- If error is high then it adjusts weights and biases by the process of gradient descent to improve accuracy.
+Forward Propagation:- Movement from Input to hidden layer and then output layer.'''
+#Measure Accuracy and Error 
+'''Back Propagation:- If error is high then it adjusts weights amd biases'''
