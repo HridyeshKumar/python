@@ -43,4 +43,34 @@ These all activation functions are added as hyperparameters in the model.'''
 '''Set up and initialisation:- If error is high then it adjusts weights and biases by the process of gradient descent to improve accuracy.
 Forward Propagation:- Movement from Input to hidden layer and then output layer.'''
 #Measure Accuracy and Error 
-'''Back Propagation:- If error is high then it adjusts weights amd biases'''
+'''Back Propagation:- If error is high then it adjusts weights amd biases by the process of gradient descent to improve accuracy.
+Gradient Descent is the process of repeating the forward and backward propagation in order to reduce error and move closer to the desired model.
+Batches and Epochs:- 10000/10(1000)
+Validation and Testing'''
+
+#Deep Learning Example- Iris Dataset
+import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import warnings
+warnings.filterwarnings("ignore")
+
+'''Prepare input data for deep learning
+Load data into pandas dataframe
+Convert the dataframe into numpy array
+Scale the feature dataset
+Use of one hot encoding for the target variable
+Split the dataset into training and test datasets
+Load Data and Review content'''
+
+iris_data=pd.read_csv("iris.csv")
+print(iris_data.head())
+'''Use label encoder to convert String to Numeric values for the target variable'''
+from sklearn.preprocessing import LabelEncoder
+label_encoder=LabelEncoder()
+iris_data['Species']=label_encoder.fit_transform(iris_data['Species'])
+print(iris_data.head())
