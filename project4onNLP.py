@@ -41,3 +41,11 @@ def tokenize(text):
    return tokens
 dataset['body_text_tokenized']=dataset['body_text_clean'].apply(lambda x:tokenize(x.lower()))
 dataset.head()
+'''Remove Stopwords:- These are commonly used words like the, and, but,if that don't contribute much to the meaning of a sentence.'''
+stopwords=nltk.corpus.stopwords.words('english')
+def remove_stopwords(tokenized_list):
+   text=[word for word in tokenized_list if word not in stopwords]
+   return text
+dataset['body_text_nostop']=dataset['body_text_tokenized'].apply(lambda x:remove_stopwords(x))
+dataset.head()
+
