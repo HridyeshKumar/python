@@ -1,4 +1,4 @@
-#Introduction to Deep Learning and Model on Iris Dataset
++#Introduction to Deep Learning and Model on Iris Dataset
 #Deep Learning Framework
 '''Deep Learning is a field within Machine Learning that deals with building amd using Neural Network Models.
 Neural Networks mimic the functioning of a human brain.
@@ -74,3 +74,63 @@ from sklearn.preprocessing import LabelEncoder
 label_encoder=LabelEncoder()
 iris_data['Species']=label_encoder.fit_transform(iris_data['Species'])
 print(iris_data.head())
+#Converting input to numpy array
+np_iris=iris_data.to_numpy()
+print(np_iris.shape)
+#Separate features and target variables
+X_data=np_iris[:,0:4]
+Y_data=np_iris[:,4]
+print("\n Features before Scaling: \n---------")
+print(X_data[:5,:])
+print("\ntarget before one-hot ending: \n---------")
+print(Y_data[:5])
+#Create a standard scaler object that if fit on the input data
+scaler=StandardScaler().fit(X_data)
+#scale tge numeric feature variable
+X_data=scaler.transform(X_data)
+#convert target variable as a one-hot encoded array
+Y_data=tf.keras.utils.to_categorical(Y_data,3)
+print("\n Features after Scaling: \n----------")
+print(X_data[:5,:])
+print("\ntarget after one-hot encoding: \n----------")
+print(Y_data[:5])
+#Splitting the data into training and test sets
+X_train,X_test,Y_train,Y_test=train_test_split(X_data,Y_data,test_size=0.10)
+print("\n Train test Dimensions: \n----------")
+print(X_train.shape,X_test.shape,Y_train.shape,Y_test.shape)
+'''Create a Model
+Number of hidden layers
+Number of nodes in each layer 
+Activation functions
+Loss function and accuracy measurements. '''
+from tensorflow import keras 
+#Number of classes in the target variable
+NB_CLASSES=3
+#Create a sequential model in keras 
+model=tf.keras.models.Sequential()
+#add the first hidden layer 
+model.add(keras.layers.Dense(128,#Number of nodes
+input_shape=(4,),#number of input variables
+name="Hidden-Layer-1",#Logical name
+activation="relu"))#activation function
+#add a second hidden layer
+model.add(keras.layers.Dense(128,name="Hidden-Layer-2",activation="relu"))
+#add an output layer with softmax function
+model.add(keras.layers.Dense(NB_CLASSES,name="Output-Layer",activation="softmax"))
+#compile the model with loss and metrics
+model.compile(loss="categorical_crossentropy",metrics=["accuracy"])
+#print the model summary
+model.summary()
+#Make it verbose so we can see the process 
+VERBOSE=1
+#Set hyperparameters for training 
+#Set batch size
+BATCH_SIZE=16
+#Set the number of epochs
+EPOCHS=20
+#Set the validation split. 20% of the training dataset will be used for validation
+VALIDATION_SPLIT=0.2
+print("\nTraining Progress: \n------------")
+'''Fitting the model. This will perform the entire training cycle, included forward propagation, loss computation, backward propagation and gradient descent.'''
+history=model.fit(X_train,Y_train,batch_size=BATCH_SIZE,epochs=EPOCHS,verbose=VERBOSE,validation_split=VALIDATION_SPLIT)
+print("Accuracy During Training: \n----c--c-- 
