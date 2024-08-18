@@ -34,3 +34,31 @@ X_test/=255.0
 print(X_train[0])
 print(y_train.shape)
 print(y_test.shape)
+'''Converting the target value into 10 bins. So, we will see that the output from a model will then go into one of these bins.'''
+y_train=to_categorical(y_train,10)
+y_test=to_categorical(y_test,10)
+print(y_train.shape)
+print(y_test.shape)
+print(y_train[0])
+#Building the model
+model=Sequential()
+model.add(Dense(512,activation='relu',input_shape=(784,)))
+model.add(Dense(512,activation='relu'))
+model.add(Dense(10,activation="softmax"))
+#Compile the model
+model.compile(optimizer="adam",loss='categorical_crossentropy',metrics=["accuracy"])
+model.summary()
+history=model.fit(X_train,y_train,epochs=20,validation_data=(X_test,y_test))
+plt.plot(history.history['accuracy'])
+#Evaluating the model
+score=model.evaluate(X_test,y_test)
+'''In neural networks, we only have fully connected layer, otherwise known as dense layer. With Convolutional Neural Networks, we have more operations such as the convolution operation, max pooling, flattening and also a fully connected layer.'''
+from keras.layers import Conv2D, MaxPooling2D,Flatten,Dense
+from keras.models import Sequential
+from keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
+(X_train,y_train),(X_test,y_test)=mnist.load_data()
+print(X_train.shape)
+print(X_test.shape)
+print(y_train.shape)
+print(y_test.shape)
