@@ -133,4 +133,29 @@ VALIDATION_SPLIT=0.2
 print("\nTraining Progress: \n------------")
 '''Fitting the model. This will perform the entire training cycle, included forward propagation, loss computation, backward propagation and gradient descent.'''
 history=model.fit(X_train,Y_train,batch_size=BATCH_SIZE,epochs=EPOCHS,verbose=VERBOSE,validation_split=VALIDATION_SPLIT)
-print("Accuracy During Training: \n----c--c-- 
+print("Accuracy During Training: \n------------")
+import matplotlib.pyplot as plt
+#Plot the accuracy of the model after each epoch
+pd.DataFrame(history.history)["accuracy"].plot(figsize=(8,5))
+plt.title("Accuracy improvement after each epoch")
+plt.show()
+#Evaluate the model against the test dataset and print the result
+print("\nEvaluate against test dataset: \n------------")
+model.evaluate(X_test,Y_test)
+#Saving a model
+model.save("iris_save")
+#Load the model
+loaded_model=keras.models.load_model("iris_save")
+#print the model summary
+loaded_model.summary()
+#Predictions with Deep Learning Model
+#raw prediction data
+prediction_input=[[2.6,12.,2.4,4.4]]
+#scale the prediction data with the same scaling object
+scaled_input=scaler.transform(prediction_input)
+#get the raw prediction probabilities
+raw_prediction=loaded_model.predict(scaled_input)
+print("Raw Prediction Output (Probabilities):",raw_prediction)
+#Find Prediction
+prediction=np.argmax(raw_prediction)
+print("Prediction is",label_encoder.inverse_transform([prediction]))
