@@ -153,3 +153,7 @@ k_fold=KFold(n_splits=5)
 cross_val_score(rf,X_features,dataset['label'],cv=k_fold,scoring='accuracy',n_jobs=1)
 
 #Model using Train Test Split
+from sklearn.metrics import precision_recall_fscore_support as score
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test=train_test_split(X_features, dataset['label'],test_size=0.3,random_state=0)
+rf=RandomForestClassifier(n_estimators=500,max
