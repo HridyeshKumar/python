@@ -156,4 +156,9 @@ cross_val_score(rf,X_features,dataset['label'],cv=k_fold,scoring='accuracy',n_jo
 from sklearn.metrics import precision_recall_fscore_support as score
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test=train_test_split(X_features, dataset['label'],test_size=0.3,random_state=0)
-rf=RandomForestClassifier(n_estimators=500,max
+rf=RandomForestClassifier(n_estimators=500,max_depth=20,n_jobs=-1)
+rf_model=rf.fit(X_train,y_train)
+sorted(zip(rf_model.feature_importances_,X_train.columns),reverse=True)[0:10]
+y_pred=rf_model.predict(X_test)
+precision,recall,fscore,support=score(y_test,y_pred,pos_label='spam',average='binary')
+print('Precision {} / Recall {} /Acccuracy {}'.format(round(precision,3),round(recall,3),round((y_pred==y_test).sum()/len(y_pred),3)))
