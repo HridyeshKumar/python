@@ -20,6 +20,7 @@ import seaborn as sns
 #Importing the dataset and printing the dataset header
 tips_df=sns.load_dataset("tips")
 tips_df.head()
+
 '''We will be using machine learning algorithms to predict the tip for a particular record based on the remaining features such as total_bill, gender, day, time etc.
 Dividing Data into Features and Labels'''
 x=tips_df.drop(['tip'],axis=1)
